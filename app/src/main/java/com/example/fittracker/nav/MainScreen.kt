@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.fittracker.AppNavHost
 import com.example.fittracker.component.CategoryPicker
+import com.example.fittracker.component.Header
 import com.example.fittracker.component.SummaryStatsCard
 
 @Composable
@@ -22,9 +22,15 @@ fun MainScreen(navController: NavController) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        Header("main", false, {})
+        Spacer(modifier = Modifier.height(16.dp))
         SummaryStatsCard()
         Spacer(modifier = Modifier.height(16.dp))
-        CategoryPicker()
+        CategoryPicker(
+            onCategoryClick = { category ->
+                navController.navigate("exerciseList/${category.name}")
+            }
+        )
 
     }
 }

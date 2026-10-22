@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 data class WorkoutCategory(val id: Int, val name: String, val description: String)
 
 @Composable
-fun CategoryPicker() {
+fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
 
     //Sample data
     val workoutCategories = listOf(
@@ -30,6 +30,7 @@ fun CategoryPicker() {
         WorkoutCategory(3, "Flexibility", "N/A"),
         WorkoutCategory(4, "HIIT", "N/A"),
     )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,15 +47,18 @@ fun CategoryPicker() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.fillMaxSize()
         ) {
+            //Iterates through the workoutCategories list and outputs the card
+            // inside the lazy Column
             items(workoutCategories) { category ->
                 WorkoutCategoryCard(category = category) {
-                    println("Clicked on ${category.name}")
+                    onCategoryClick(category)
                 }
             }
         }
     }
 }
 
+//takes information fromt the data model and creates a card
 @Composable
 fun WorkoutCategoryCard(category: WorkoutCategory, onClick: () -> Unit) {
     Card(
