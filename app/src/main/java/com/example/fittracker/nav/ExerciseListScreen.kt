@@ -13,23 +13,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.fittracker.component.ExercisePicker
 import com.example.fittracker.component.Header
-
-data class Exercise(
-    val name: String,
-    val difficulty: String,
-    val instructionPreview: String
-)
+import com.example.fittracker.component.getCategorizedExercises
 
 @Composable
 fun ExerciseListScreen(navController: NavController, categoryName: String?) {
+    val exercises = getCategorizedExercises()[categoryName] ?: emptyList()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-
         Header(
             currentRoute = "exerciseList",
             canNavigateBack = true,
@@ -43,12 +39,14 @@ fun ExerciseListScreen(navController: NavController, categoryName: String?) {
             style = MaterialTheme.typography.headlineMedium
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        ExercisePicker(exercises = exercises)
     }
 }
-
 
 @Preview
 @Composable
 fun ExerciseListScreenPreview() {
-    ExerciseListScreen(navController = NavController(LocalContext.current), categoryName = "Workout")
+    ExerciseListScreen(navController = NavController(LocalContext.current), categoryName = "Cardio")
 }
