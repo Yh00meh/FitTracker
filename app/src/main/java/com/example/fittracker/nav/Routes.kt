@@ -18,5 +18,10 @@ fun AppNavHost() {
             val categoryName = backStackEntry.arguments?.getString("categoryName")
             ExerciseListScreen(navController, categoryName)
         }
+
+        composable("exerciseDetails/{exerciseName}") { backStackEntry ->
+            val exerciseName = backStackEntry.arguments?.getString("exerciseName")
+            ExerciseDetailScreen(navController, exerciseName)
+        }
     }
 }
