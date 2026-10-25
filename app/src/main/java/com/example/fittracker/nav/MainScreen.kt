@@ -10,13 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.fittracker.MyViewModel
 import com.example.fittracker.component.CategoryPicker
 import com.example.fittracker.component.Header
 import com.example.fittracker.component.SummaryStatsCard
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(
+    navController: NavController,
+    viewModel: MyViewModel = viewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -24,7 +29,10 @@ fun MainScreen(navController: NavController) {
     ) {
         Header("main", false, {})
         Spacer(modifier = Modifier.height(16.dp))
-        SummaryStatsCard()
+        SummaryStatsCard(
+            workoutCount = viewModel.totalWorkouts,
+            totalMinutes = viewModel.totalMinutes
+        )
         Spacer(modifier = Modifier.height(16.dp))
         CategoryPicker(
             onCategoryClick = { category ->

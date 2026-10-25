@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SummaryStatsCard() {
+fun SummaryStatsCard(
+    workoutCount: Int = 0,
+    totalMinutes: Int = 0
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -60,13 +63,13 @@ fun SummaryStatsCard() {
                     modifier = Modifier.weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
-                    SummaryStat(count = "0", label = "Workouts")
+                    SummaryStat(count = workoutCount.toString(), label = "Workouts")
                 }
                 Row(
                     modifier = Modifier.weight(1f),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    SummaryStat(count = "0", label = "Minutes")
+                    SummaryStat(count = totalMinutes.toString(), label = "Minutes")
                 }
             }
 

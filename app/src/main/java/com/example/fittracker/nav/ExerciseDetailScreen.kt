@@ -21,15 +21,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.fittracker.component.DetailLoggerCard
+import com.example.fittracker.MyViewModel
 import com.example.fittracker.component.DetailLoggerCard
 import com.example.fittracker.component.Header
 import com.example.fittracker.component.getExerciseDetails
 
 
 @Composable
-fun ExerciseDetailScreen(navController: NavController, exerciseName: String?) {
+fun ExerciseDetailScreen(
+    navController: NavController,
+    exerciseName: String?,
+    viewModel: MyViewModel = viewModel()
+) {
     val details = getExerciseDetails(exerciseName)
 
     Column(
@@ -80,7 +85,10 @@ fun ExerciseDetailScreen(navController: NavController, exerciseName: String?) {
 
             // Workout Time Logger
             DetailLoggerCard(
-                exerciseName = details.name
+                exerciseName = details.name,
+                onLogWorkout = { minutes ->
+                    viewModel.logWorkout(minutes)
+                }
             )
 
             Spacer(modifier = Modifier.height(20.dp))
