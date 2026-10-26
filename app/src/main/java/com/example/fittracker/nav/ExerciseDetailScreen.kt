@@ -35,6 +35,7 @@ fun ExerciseDetailScreen(
     exerciseName: String?,
     viewModel: MyViewModel = viewModel()
 ) {
+    // Goes through the getExerciseDetails "database/API A.K.A a map" to get the exercise details
     val details = getExerciseDetails(exerciseName)
 
     Column(
@@ -42,6 +43,7 @@ fun ExerciseDetailScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        //Top App Bar
         Header(
             currentRoute = "exerciseDetails",
             canNavigateBack = true,
@@ -66,13 +68,14 @@ fun ExerciseDetailScreen(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
+                    //Light Card Title
                     Text(
                         text = "Recommended Timing / Sets",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Spacer(modifier = Modifier.height(4.dp))
-
+                    //Card Description
                     Text(
                         text = details.recommendedTiming,
                         style = MaterialTheme.typography.bodyMedium,
@@ -102,10 +105,10 @@ fun ExerciseDetailScreen(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // List of Steps
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                // Iterates through the exercise instruction steps and displays each step as a numbered card
                 itemsIndexed(details.steps) { index, step ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
@@ -115,6 +118,7 @@ fun ExerciseDetailScreen(
                             modifier = Modifier.padding(16.dp),
                             verticalAlignment = Alignment.Top
                         ) {
+                            //Step number
                             Text(
                                 text = "${index + 1}.",
                                 style = MaterialTheme.typography.titleMedium,
@@ -122,6 +126,7 @@ fun ExerciseDetailScreen(
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(end = 12.dp)
                             )
+                            //Step Description
                             Text(
                                 text = step,
                                 style = MaterialTheme.typography.bodyMedium
@@ -130,7 +135,9 @@ fun ExerciseDetailScreen(
                     }
                 }
             }
-        } else {
+        }
+        //Here just incase for rare cases the exercise is not found
+        else {
             Text(
                 text = "Exercise details not found.",
                 style = MaterialTheme.typography.bodyLarge,

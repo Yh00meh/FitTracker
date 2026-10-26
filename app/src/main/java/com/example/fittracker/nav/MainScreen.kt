@@ -33,14 +33,19 @@ fun MainScreen(
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
+        //Top App Bar
         Header("main", false, {})
         Spacer(modifier = Modifier.height(16.dp))
+
+        //UI visual the recorded workouts & time
         SummaryStatsCard(
             workoutCount = viewModel.totalWorkouts,
             totalMinutes = viewModel.totalMinutes
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+
         CategoryPicker(
             onCategoryClick = { category ->
                 navController.navigate("exerciseList/${category.name}")
@@ -48,6 +53,8 @@ fun MainScreen(
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        //UI visual for recorded workouts
         LogHistoryCard(
             logs = viewModel.workoutLogs,
             onDeleteLog = { item -> viewModel.deleteLog(item) },

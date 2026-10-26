@@ -19,6 +19,8 @@ import com.example.fittracker.component.Header
 
 @Composable
 fun ExerciseListScreen(navController: NavController, categoryName: String?) {
+    // Get the list of exercises for the selected category (empty list is here for syntax correction
+    //and to avoid null pointer exceptions)
     val exercises = getCategorizedExercises()[categoryName] ?: emptyList()
 
     Column(
@@ -26,6 +28,7 @@ fun ExerciseListScreen(navController: NavController, categoryName: String?) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        //Top App Bar
         Header(
             currentRoute = "exerciseList",
             canNavigateBack = true,
@@ -34,6 +37,7 @@ fun ExerciseListScreen(navController: NavController, categoryName: String?) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Workout Title
         Text(
             text = "Exercises for ${categoryName ?: "Workout"}",
             style = MaterialTheme.typography.headlineMedium
@@ -41,6 +45,7 @@ fun ExerciseListScreen(navController: NavController, categoryName: String?) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Component that displays the list of exercises
         ExercisePicker(
             exercises = exercises,
             onExerciseClick = { exercise ->
@@ -50,6 +55,7 @@ fun ExerciseListScreen(navController: NavController, categoryName: String?) {
     }
 }
 
+//Sample "database" for exercises I assume we will use actually databases or APIs in future lessons
 fun getCategorizedExercises(): Map<String, List<Exercise>> {
     return mapOf(
         "Cardio" to listOf(

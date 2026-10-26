@@ -22,10 +22,10 @@ data class WorkoutCategory(val id: Int, val name: String, val description: Strin
 fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
 
     val workoutCategories = listOf(
-        WorkoutCategory(1, "Cardio", "N/A"),
-        WorkoutCategory(2, "Strength", "N/A"),
-        WorkoutCategory(3, "Flexibility", "N/A"),
-        WorkoutCategory(4, "HIIT", "N/A"),
+        WorkoutCategory(1, "Cardio", "Improve endurance, burn calories, and boost heart health"),
+        WorkoutCategory(2, "Strength", "Build muscle mass, increase strength, and enhance power"),
+        WorkoutCategory(3, "Flexibility", "Enhance mobility, stretch muscles, and improve posture"),
+        WorkoutCategory(4, "HIIT", "High-intensity interval training for fast fat burn and stamina")
     )
 
     Column(

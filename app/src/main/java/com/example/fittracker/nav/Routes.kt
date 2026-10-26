@@ -13,16 +13,20 @@ fun AppNavHost(
 ) {
     val navController = rememberNavController()
 
+    // Navigation graph
     NavHost(navController, startDestination = "main") {
+        //Main Screen
         composable("main") {
             MainScreen(navController, viewModel)
         }
 
+        //Exercise List Screen (Route based on category chosen)
         composable("exerciseList/{categoryName}") { backStackEntry ->
             val categoryName = backStackEntry.arguments?.getString("categoryName")
             ExerciseListScreen(navController, categoryName)
         }
 
+        //Exercise Details Screen (Route based on exercise chosen)
         composable("exerciseDetails/{exerciseName}") { backStackEntry ->
             val exerciseName = backStackEntry.arguments?.getString("exerciseName")
             ExerciseDetailScreen(navController, exerciseName, viewModel)

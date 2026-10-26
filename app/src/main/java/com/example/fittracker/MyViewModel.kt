@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import java.util.UUID
 
+// Data model for workout logs
 data class WorkoutLogItem(
     val id: String = UUID.randomUUID().toString(),
     val exerciseName: String,
@@ -20,8 +21,10 @@ class MyViewModel : ViewModel() {
     var totalMinutes by mutableIntStateOf(0)
         private set
 
+    // List of workout logs
     val workoutLogs = mutableStateListOf<WorkoutLogItem>()
 
+    //Logs workout and updates stats
     fun logWorkout(exerciseName: String, minutes: Int) {
         if (minutes > 0) {
             val newItem = WorkoutLogItem(exerciseName = exerciseName, minutes = minutes)
@@ -31,6 +34,7 @@ class MyViewModel : ViewModel() {
         }
     }
 
+    //Deletes log entry and updates stats
     fun deleteLog(item: WorkoutLogItem) {
         if (workoutLogs.remove(item)) {
             totalWorkouts = (totalWorkouts - 1).coerceAtLeast(0)
@@ -38,6 +42,7 @@ class MyViewModel : ViewModel() {
         }
     }
 
+    //Clears all log entries and resets stats
     fun clearLogHistory() {
         workoutLogs.clear()
         totalWorkouts = 0
