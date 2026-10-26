@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,13 +40,11 @@ fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
         )
 
 
-        LazyColumn(
+        Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxWidth()
         ) {
-            //Iterates through the workoutCategories list and outputs the card
-            // inside the lazy Column
-            items(workoutCategories) { category ->
+            workoutCategories.forEach { category ->
                 WorkoutCategoryCard(category = category) {
                     onCategoryClick(category)
                 }

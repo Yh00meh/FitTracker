@@ -87,7 +87,7 @@ fun ExerciseDetailScreen(
             DetailLoggerCard(
                 exerciseName = details.name,
                 onLogWorkout = { minutes ->
-                    viewModel.logWorkout(minutes)
+                    viewModel.logWorkout(details.name, minutes)
                 }
             )
 
