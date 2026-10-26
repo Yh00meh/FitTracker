@@ -26,6 +26,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fittracker.WorkoutLogItem
 
+/**
+ * Log History Card component
+ * Grabs parameters from the view model and displays the stats in a card
+ *
+ * @param logs The list of workout logs to display
+ * @param onDeleteLog Called deleteLog from the view model
+ * @param onClearAll Called clearLogHistory from the view model
+ */
 @Composable
 fun LogHistoryCard(
     logs: List<WorkoutLogItem>,
@@ -48,6 +56,7 @@ fun LogHistoryCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                //Title
                 Text(
                     text = "Workout History",
                     fontSize = 20.sp,
@@ -55,6 +64,7 @@ fun LogHistoryCard(
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
+                //Conditional button to clear all logs
                 if (logs.isNotEmpty()) {
                     TextButton(onClick = onClearAll) {
                         Text(
@@ -67,6 +77,7 @@ fun LogHistoryCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
+            //When there are no logs
             if (logs.isEmpty()) {
                 Text(
                     text = "No workouts logged yet. Select a category above to get started!",
@@ -78,6 +89,7 @@ fun LogHistoryCard(
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+                    //Iterates through the logs and displays them
                     logs.forEach { item ->
                         Card(
                             modifier = Modifier.fillMaxWidth(),

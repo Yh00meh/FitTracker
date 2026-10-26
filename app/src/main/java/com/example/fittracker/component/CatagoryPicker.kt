@@ -18,9 +18,16 @@ import androidx.compose.ui.unit.dp
 //Data Model
 data class WorkoutCategory(val id: Int, val name: String, val description: String)
 
+/**
+ * CatagoryPicker component
+ * Selection of the big 4 workout categories
+ *
+ * @param onCategoryClick Called when a category is clicked
+ */
 @Composable
 fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
 
+    //List of workout categories
     val workoutCategories = listOf(
         WorkoutCategory(1, "Cardio", "Improve endurance, burn calories, and boost heart health"),
         WorkoutCategory(2, "Strength", "Build muscle mass, increase strength, and enhance power"),
@@ -33,6 +40,7 @@ fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        //Title
         Text(
             text = "Workout Categories",
             style = MaterialTheme.typography.headlineMedium,
@@ -53,7 +61,7 @@ fun CategoryPicker(onCategoryClick: (WorkoutCategory) -> Unit = {}) {
     }
 }
 
-//takes information fromt the data model and creates a card
+//This helper function takes information from the data model and creates a card
 @Composable
 fun WorkoutCategoryCard(category: WorkoutCategory, onClick: () -> Unit) {
     Card(
@@ -65,6 +73,7 @@ fun WorkoutCategoryCard(category: WorkoutCategory, onClick: () -> Unit) {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
+            //Name and Description
             Text(text = category.name, style = MaterialTheme.typography.displaySmall)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = category.description, style = MaterialTheme.typography.bodyMedium)

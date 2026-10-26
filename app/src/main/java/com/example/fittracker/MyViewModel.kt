@@ -9,7 +9,7 @@ import java.util.UUID
 
 // Data model for workout logs
 data class WorkoutLogItem(
-    val id: String = UUID.randomUUID().toString(),
+    val id: String = UUID.randomUUID().toString(), // Assigns a immutable Unique ID for each log entry
     val exerciseName: String,
     val minutes: Int
 )

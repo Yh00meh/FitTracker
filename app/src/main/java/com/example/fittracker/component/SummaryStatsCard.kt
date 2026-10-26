@@ -22,6 +22,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * Summary Stats Card component
+ * Grabs parameters from the view model and displays the stats in a card
+ *
+ *
+ * @param workoutCount The string route of the currently displayed screen.
+ * @param totalMinutes The added total of all minutes logged
+ */
 @Composable
 fun SummaryStatsCard(
     workoutCount: Int = 0,
@@ -79,6 +87,7 @@ fun SummaryStatsCard(
     }
 }
 
+// Helper function to display the stats in the card
 @Composable
 fun SummaryStat(count: String, label: String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {

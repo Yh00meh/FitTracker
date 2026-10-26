@@ -25,6 +25,8 @@ data class Exercise(
     val instructionPreview: String
 )
 
+
+
 @Composable
 fun ExercisePicker(
     exercises: List<Exercise>,
@@ -41,22 +43,32 @@ fun ExercisePicker(
         }
     }
 }
-
+/**
+ * Exercise Card component
+ * Displays a card for each exercise
+ *
+ * @param exercise The exercise to display
+ * @param onClick Called when the exercise card is clicked
+ */
 @Composable
 fun ExerciseCard(exercise: Exercise, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth()
     ) {
+        //Outputs the exercise details
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
+            //Title
             Text(text = exercise.name, style = MaterialTheme.typography.titleLarge)
             Spacer(modifier = Modifier.height(4.dp))
+            //Difficulty
             Text(text = "Difficulty: ${exercise.difficulty}", style = MaterialTheme.typography.labelMedium)
             Spacer(modifier = Modifier.height(8.dp))
+            //Instructions
             Text(text = exercise.instructionPreview, style = MaterialTheme.typography.bodyMedium)
         }
     }
